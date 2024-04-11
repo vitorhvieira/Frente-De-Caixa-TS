@@ -1,0 +1,81 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id Int @id @default(autoincrement())
+  nome String
+  email String @unique
+  senha String
+  @@map("usuarios")
+}
+
+model Client {
+  id Int @id @default(autoincrement())
+  nome String
+  email String @unique
+  cpf String @unique
+  cep String?
+  rua String?
+  numero String?
+  bairro String?
+  cidade String?
+  estado String?
+
+  pedidos Order[]
+
+@@map("clientes")
+}
+
+model Order {
+  id Int @id @default(autoincrement())
+  cliente Client @relation(fields: [cliente_id], references: [id])
+  cliente_id Int
+  observacao String
+  valor_total Int
+
+  pedido_produtos Order_Product[]
+  @@map("pedidos")
+}
+
+model Product {
+  id Int @id @default(autoincrement())
+  descricao String?
+  quantidade_estoque Int
+  valor Int
+  categoria Category @relation(fields: [categoria_id], references: [id])
+  categoria_id Int
+  produto_img String?
+
+  pedidos_produtos Order_Product[]
+  @@map("produtos")
+}
+
+model Order_Product{
+  id Int @ id@default(autoincrement())
+  pedido Order @relation(fields: [pedido_id], references: [id])
+  pedido_id Int
+  produto Product @relation(fields: [produto_id], references: [id])
+  produto_id Int
+  quantidade_produto Int 
+  valor_produto Int
+
+  @@map("pedido_produtos")
+}
+
+
+model Category {
+  id Int @id @default(autoincrement())
+  descricao String
+
+
+  produtos Product[]
+  @@map("categorias")
+}
