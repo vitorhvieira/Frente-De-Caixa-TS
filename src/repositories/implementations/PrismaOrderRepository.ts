@@ -6,7 +6,14 @@ import { apiError } from "../../helpers/apiError";
 import { IOrderRepository, IPickOrder, ISaveOrder } from "../IOrderRepository";
 
 export class PrismaOrderRepository implements IOrderRepository {
-  async deitalOrder(): Promise<Order_Product[]> {
+  async findClient(id: number): Promise<boolean> {
+    const client = await prisma.client.findUnique({ where: { id } });
+    if (!client) {
+      return false;
+    }
+    return true;
+  }
+  async detailOrder(): Promise<Order_Product[]> {
     const orders = prisma.order_Product.findMany({ orderBy: { id: "asc" } });
     return orders;
   }

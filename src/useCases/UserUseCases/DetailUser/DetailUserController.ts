@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { DetailUserUseCase } from "./DeitalUserUseCase";
+import { DetailUserUseCase } from "./DetailUserUseCase";
 
 export class DetailUserController {
   constructor(private detailUserUseCase: DetailUserUseCase) {}

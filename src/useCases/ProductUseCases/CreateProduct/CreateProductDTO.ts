@@ -3,5 +3,5 @@ export interface ICreateProductDTO {
   valor: number;
   categoria_id: number;
   quantidade_estoque: number;
-  produto_img: string;
+  produto_img?: string | null;
 }

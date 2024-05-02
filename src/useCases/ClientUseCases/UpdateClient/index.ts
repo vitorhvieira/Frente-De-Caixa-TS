@@ -3,7 +3,7 @@ import { UpdateClientController } from "./UpdateClientController";
 import { UpdateClientUseCase } from "./UpdateClientUseCase";
 
 const prismaClientRepository = new PrismaClientRepository();
-const updateClienteUseCase = new UpdateClientUseCase(prismaClientRepository);
-const updateClientController = new UpdateClientController(updateClienteUseCase);
+const updateClientUseCase = new UpdateClientUseCase(prismaClientRepository);
+const updateClientController = new UpdateClientController(updateClientUseCase);
 
-export { updateClienteUseCase, updateClientController };
+export { updateClientUseCase, updateClientController };

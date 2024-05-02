@@ -1,6 +1,6 @@
 import { PrismaProductRepository } from "../../../repositories/implementations/PrismaProductRepository";
 import { CreateProductController } from "./CreateProductController";
-import { CreateProductUseCase } from "./CreateProductUseCases";
+import { CreateProductUseCase } from "./CreateProductUseCase";
 
 const prismaProductRepository = new PrismaProductRepository();
 const createProductUseCase = new CreateProductUseCase(prismaProductRepository);

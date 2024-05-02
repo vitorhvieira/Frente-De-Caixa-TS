@@ -12,10 +12,11 @@ export interface IPickOrder {
 }
 
 export interface IOrderRepository {
+  findClient(id: number): Promise<boolean>;
   findProduct(id: number): Promise<Product>;
   checkStock(props: IPickOrder): Promise<boolean>;
   updateQuantity(props: IPickOrder): Promise<void>;
   saveOrder(props: ISaveOrder): Promise<void>;
   detailOrderByID(pedido_id: number): Promise<Order[] | void>;
-  deitalOrder(): Promise<Order_Product[]>;
+  detailOrder(): Promise<Order_Product[]>;
 }

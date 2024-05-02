@@ -12,7 +12,7 @@ export class PrismaUsersRepository implements IUsersRepository {
     const user = await prisma.user.findFirst({ where: { [key]: value } });
     return user;
   }
-  async findoOther({ userID, email }: IFindOther): Promise<User | void> {
+  async findOther({ userID, email }: IFindOther): Promise<User | void> {
     const user = await prisma.user.findFirst({
       where: {
         email,
@@ -26,7 +26,11 @@ export class PrismaUsersRepository implements IUsersRepository {
   async update(props: IUserUpdate): Promise<void> {
     await prisma.user.update({
       where: { id: props.id },
-      data: props.userUpdate,
+      data: {
+        email: props.userUpdate.email || undefined,
+        senha: props.userUpdate.senha || undefined,
+        nome: props.userUpdate.nome || undefined,
+      },
     });
   }
   async save(user: User): Promise<void> {

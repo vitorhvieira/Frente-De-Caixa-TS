@@ -10,7 +10,7 @@ export class UpdateUserUseCase {
     private bcryptProvider: IBcryptProvider
   ) {}
   async execute(data: IUpdateUserDTO, user: Partial<User>): Promise<void> {
-    const userAlready = await this.userRepository.findoOther({
+    const userAlready = await this.userRepository.findOther({
       userID: user.id,
       email: data.email,
     });

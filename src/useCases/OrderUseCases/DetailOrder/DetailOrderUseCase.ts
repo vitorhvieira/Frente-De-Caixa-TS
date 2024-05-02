@@ -14,7 +14,7 @@ export class DetailOrderUseCase {
       }
       return findOrderByID;
     }
-    const findOrders = await this.oderRepository.deitalOrder();
+    const findOrders = await this.oderRepository.detailOrder();
     return findOrders;
   }
 }

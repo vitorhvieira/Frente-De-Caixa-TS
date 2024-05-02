@@ -47,7 +47,7 @@ model Order {
 
 model Product {
   id Int @id @default(autoincrement())
-  descricao String?
+  descricao String
   quantidade_estoque Int
   valor Int
   categoria Category @relation(fields: [categoria_id], references: [id])

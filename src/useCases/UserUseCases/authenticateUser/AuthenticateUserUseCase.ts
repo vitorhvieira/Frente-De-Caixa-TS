@@ -1,12 +1,12 @@
 import { apiError } from "../../../helpers/apiError";
 import { IBcryptProvider } from "../../../providers/IBcryptProvider";
-import { IjwtProvider } from "../../../providers/IJwtProvider";
+import { IJwtProvider } from "../../../providers/IJwtProvider";
 import { IUsersRepository } from "../../../repositories/IUsersRepository";
 import { IAuthenticateUserDTO } from "./AuthenticateUserDTO";
 
 export class AuthenticateUserUseCase {
   constructor(
-    private jwtProvider: IjwtProvider,
+    private jwtProvider: IJwtProvider,
     private usersRepository: IUsersRepository,
     private bcryptProvider: IBcryptProvider
   ) {}
@@ -20,12 +20,12 @@ export class AuthenticateUserUseCase {
       throw new apiError("Usuario com e-mail não cadastrado!", 404);
     }
 
-    const chekPass = await this.bcryptProvider.compare(
+    const checkPass = await this.bcryptProvider.compare(
       data.senha,
       userExists.senha
     );
 
-    if (!chekPass) {
+    if (!checkPass) {
       throw new apiError("Senha Incorreta!", 400);
     }
 

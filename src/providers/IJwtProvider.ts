@@ -3,7 +3,7 @@ export interface data {
   expiresIn: string;
 }
 
-export interface IjwtProvider {
+export interface IJwtProvider {
   sign(data: data): Promise<string>;
   verify(token: string): Promise<{ id: number }>;
 }

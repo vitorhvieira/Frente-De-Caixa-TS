@@ -10,8 +10,10 @@ export interface IUpdateProduct {
 }
 
 export interface IProductRepository {
+  saveImage(props: Express.Multer.File): Promise<string>;
+  deleteImage(props: string): Promise<void>;
   findProductByID(id: number): Promise<Product | void>;
-  detailProducts(): Promise<Product[]>
+  detailProducts(): Promise<Partial<Product[]>>;
   updateProduct(props: IUpdateProduct): Promise<Product | void>;
   deleteProduct(id: number): Promise<void>;
   saveProduct(props: ISaveProduct): Promise<void>;

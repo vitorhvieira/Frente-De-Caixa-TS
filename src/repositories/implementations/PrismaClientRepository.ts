@@ -27,7 +27,17 @@ export class PrismaClientRepository implements IClientRepository {
   async updateClient(props: IUpdateClient): Promise<void | Client> {
     const client = await prisma.client.update({
       where: { id: props.id },
-      data: props.dataToUpdate,
+      data: {
+        nome: props.dataToUpdate.nome || undefined,
+        email: props.dataToUpdate.email || undefined,
+        cpf: props.dataToUpdate.cpf || undefined,
+        cep: props.dataToUpdate.cep || undefined,
+        rua: props.dataToUpdate.rua || undefined,
+        numero: props.dataToUpdate.numero || undefined,
+        bairro: props.dataToUpdate.bairro || undefined,
+        cidade: props.dataToUpdate.cidade || undefined,
+        estado: props.dataToUpdate.estado || undefined,
+      },
     });
     return client;
   }
