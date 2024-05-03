@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const DetailOrderSchema = z.object({
-  params: z.object({
-    id: z
+  query: z.object({
+    cliente_id: z
       .string()
       .or(z.number())
       .refine(

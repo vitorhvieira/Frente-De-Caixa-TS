@@ -27,6 +27,6 @@ export class CreateProductController {
       produto_img: null,
     });
 
-    return response.status(200).json();
+    return response.status(201).send();
   }
 }

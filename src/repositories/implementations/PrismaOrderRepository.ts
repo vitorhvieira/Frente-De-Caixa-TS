@@ -69,7 +69,7 @@ export class PrismaOrderRepository implements IOrderRepository {
         },
       });
     }
-    console.log(sum);
+
     await prisma.order.update({
       where: { id: order.id },
       data: { valor_total: sum },
@@ -80,6 +80,9 @@ export class PrismaOrderRepository implements IOrderRepository {
       where: { cliente_id },
       include: { pedido_produtos: true },
     });
+    if (order.length == 0) {
+      throw new apiError("Nenhum pedido cadastrado", 404);
+    }
     return order;
   }
 }

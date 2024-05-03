@@ -7,6 +7,6 @@ export class UpdateUserController {
     const { nome, email, senha } = request.body;
     const { id } = request.user;
     await this.updateUserUseCase.execute({ nome, email, senha }, { id });
-    return response.status(200).send();
+    return response.status(204).send();
   }
 }

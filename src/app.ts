@@ -5,6 +5,7 @@ import { router } from "./routes";
 import { handleError } from "./middleware/handleError";
 import "dotenv/config";
 
+
 class AppConfig {
   public express: express.Application;
   constructor() {
@@ -18,8 +19,10 @@ class AppConfig {
     this.express.use(cors());
   }
   private routes(): void {
+    
     this.express.use(router);
     this.express.use(handleError);
+    
   }
 }
 

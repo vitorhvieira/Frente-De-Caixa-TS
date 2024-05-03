@@ -14,7 +14,7 @@ export const CreateOrderSchema = z.object({
         },
         { message: "O id fornecido é inválido!" }
       ),
-    observacao: z.string({ required_error: "A Observação é obrigatoria!" }),
+    observacao: z.string({ required_error: "A observação é obrigatoria!" }),
     pedido_produtos: z
       .array(
         z.object({

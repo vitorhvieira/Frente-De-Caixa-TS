@@ -17,7 +17,7 @@ export const UpdateProductSchema = z.object({
   }),
   body: z.object({
     descricao: z
-      .string({ required_error: "A descrição é obrigatoria!" })
+      .string()
       .optional(),
     valor: z
       .string()

@@ -9,7 +9,10 @@ export const authenticate = async (
 ) => {
   const { authorization } = request.headers;
   if (!authorization || !authorization.includes("Bearer")) {
-    throw new apiError("Formado de token invalido!", 401);
+    throw new apiError(
+      "Para acessar este recurso um token de autenticação válido deve ser enviado!",
+      401
+    );
   }
 
   const token = authorization.split(" ")[1];

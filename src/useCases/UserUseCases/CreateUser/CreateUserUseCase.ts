@@ -18,7 +18,7 @@ export class CreateUserUseCase {
     });
 
     if (userEmailAlreadyExists) {
-      throw new apiError("Usuario com e-mail cadastrado!", 409);
+      throw new apiError("O e-mail informado já está sendo utilizado por outro usuário.", 409);
     }
 
     const hashPass = await this.bcryptProvider.hash(data.senha);

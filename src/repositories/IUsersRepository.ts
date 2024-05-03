@@ -16,7 +16,7 @@ export interface IUserUpdate {
 }
 
 export interface IUsersRepository {
-  findBy(props: IFindBy): Promise<void | User>;
+  findBy(props: IFindBy): Promise<User>;
   findOther(props: IFindOther): Promise<void | User>;
   save(user: User): Promise<void>;
   update(props: IUserUpdate): Promise<void>;

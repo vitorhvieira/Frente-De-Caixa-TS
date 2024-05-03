@@ -6,6 +6,7 @@ import {
 } from "../IProductRepository";
 import { prisma } from "../../configs/prisma";
 import { s3 } from "../../configs/aws-s3";
+import { apiError } from "../../helpers/apiError";
 
 export class PrismaProductRepository implements IProductRepository {
   async saveImage(props: Express.Multer.File): Promise<string> {
@@ -50,6 +51,18 @@ export class PrismaProductRepository implements IProductRepository {
     });
   }
   async deleteProduct(id: number): Promise<void> {
+    const verifyOrder = await prisma.order_Product.findFirst({
+      where: { produto_id: id },
+    });
+
+    if (verifyOrder) {
+      throw new apiError(
+        `O produto ao qual deseja deletar esta vinculado ao pedido_produtos com ID ${verifyOrder.id}!`,
+        406
+      );
+    }
+    const findImage = await prisma.product.findUnique({ where: { id } });
+    await this.deleteImage(findImage.produto_img);
     await prisma.product.delete({ where: { id } });
   }
   async saveProduct(props: ISaveProduct): Promise<void> {

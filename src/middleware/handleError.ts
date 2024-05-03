@@ -8,6 +8,8 @@ export const handleError = async (
   next: NextFunction
 ) => {
   const statusCode = error.statuscode ?? 500;
-  const message = error.statuscode ? error.message : "Internal Server Error";
+  const message = error.statuscode
+    ? error.message
+    : "Erro interno do servidor.";
   return response.status(statusCode).json({ message });
 };

@@ -8,7 +8,7 @@ import {
 import { prisma } from "../../configs/prisma";
 
 export class PrismaUsersRepository implements IUsersRepository {
-  async findBy({ key, value }: IFindBy): Promise<User | void> {
+  async findBy({ key, value }: IFindBy): Promise<User> {
     const user = await prisma.user.findFirst({ where: { [key]: value } });
     return user;
   }

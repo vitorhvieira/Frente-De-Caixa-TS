@@ -7,6 +7,6 @@ export class DetailProductController {
     const { id } = request.params;
     const products = await this.detailProductUseCase.execute(Number(id));
 
-    return response.status(202).json(products);
+    return response.status(200).json(products);
   }
 }

@@ -14,7 +14,7 @@ orderRouter.post(
   }
 );
 orderRouter.get(
-  "/pedido/:id?",
+  "/pedido/:cliente_id?",
   validationRequest(DetailOrderSchema),
   (request, response) => {
     return detailOrderController.handle(request, response);
